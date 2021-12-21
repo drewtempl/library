@@ -14,7 +14,8 @@
 .header {
     display: flex;
 }
-.newBookBtn {
+
+#newBookBtn {
     width: 160px;
     height: 100px;
     background: blue;
@@ -35,13 +36,13 @@
     color: white;
     position: fixed;
     z-index: 1;
-    left: 50vw;
+    left: 40vw;
     top: 25vh;
     padding: 30px;
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
-    
+    animation: ease-in;
 }
 
 .form-container div {
@@ -52,4 +53,24 @@
 .form-buttons {
     display: flex;
     justify-content: space-between;
+}
+
+.read-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#read, #not-read, #add, #cancel{
+    border: 2px solid white;
+    padding: 5px 10px;
+}
+
+.show-form {
+    display: flex;
+}
+
+.deleteBtn {
+    height: 30px;
+    background: red;
 }
