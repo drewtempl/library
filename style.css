@@ -1,0 +1,55 @@
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 100px;
+    padding: 100px;
+}
+
+.card {
+    height: 300px;
+    width: 200px;
+    border: 2px solid black;
+}
+
+.header {
+    display: flex;
+}
+.newBookBtn {
+    width: 160px;
+    height: 100px;
+    background: blue;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    gap: 45px;
+    font-size: 24px;
+}
+
+
+.form-popup {
+    width: 300px;
+    height: 400px;
+    background: black;
+    color: white;
+    position: fixed;
+    z-index: 1;
+    left: 50vw;
+    top: 25vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.form-container div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-buttons {
+    display: flex;
+    justify-content: space-between;
+}
