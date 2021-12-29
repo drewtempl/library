@@ -50,9 +50,10 @@
     justify-content: space-between;
 }
 
-.form-buttons {
+.form-buttons, .read-buttons {
     display: flex;
     justify-content: space-between;
+    
 }
 
 .read-buttons {
@@ -73,4 +74,9 @@
 .deleteBtn {
     height: 30px;
     background: red;
+}
+
+.read-select {
+    color: blue;
+    border: 2px solid blue;
 }
