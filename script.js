@@ -80,7 +80,7 @@ function addFields() {
     let title = document.querySelector('#title').value;
     let author = document.querySelector('#author').value;
     let pages = document.querySelector('#pages').value;
-    if (pages == null) pages = "0";
+    if (pages == "") pages = "0";
     let read = document.querySelector('#read').value;
     let id = myLibrary.length;
 
@@ -127,15 +127,38 @@ function populateCard(book, card) {
     card.appendChild(pages);
 
     const readStatus = document.createElement('div');
-    if (book.read) 
+    let rStatus = true
+    if (book.read) {
         readStatus.textContent = "Read";
+    }
 
-    else 
+    else {
         readStatus.textContent = "Not Read";
+        rStatus = false;
+    }
+        
     card.appendChild(readStatus);
 
 
     card.id = book.id;
+
+    const readToggle = document.createElement('div');
+    readToggle.classList.add('read-toggle');
+    rStatus ? readToggle.textContent = "Mark as unread" :
+              readToggle.textContent = "Mark as read";  
+    readToggle.addEventListener('click', () => {
+        if (rStatus) {
+            readToggle.textContent = "Mark as unread";
+            readStatus.textContent = "Not Read";
+        }
+
+        refreshLibrary();
+    })
+    card.appendChild(readToggle);
+
+    function bookReadStatus(status) {
+
+    }
 
     const deleteBtn = document.createElement('div');
     deleteBtn.classList.add('deleteBtn')
@@ -145,6 +168,8 @@ function populateCard(book, card) {
         refreshLibrary();
     })
     card.appendChild(deleteBtn);
+
+    
 }
 
 

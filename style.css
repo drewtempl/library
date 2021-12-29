@@ -80,3 +80,10 @@
     color: blue;
     border: 2px solid blue;
 }
+
+.read-toggle {
+    background: blue;
+    color: white;
+    text-align: center;
+    height: 30px;
+}
