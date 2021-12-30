@@ -38,6 +38,7 @@ body {
 .header h1 {
     margin: 0;
     font-size: 50px;
+    color: rgb(202, 202, 202);
 }
 
 #newBookBtn {
