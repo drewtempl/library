@@ -22,15 +22,8 @@ function addBookToLibrary(book) {
     total++;
 }
 
-//3 sample books for testing
-// const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false, 0);
-// addBookToLibrary(hobbit);
-// const hobbit2 = new Book("Lord of The Rings", "J.R.R. Tolkien", 296, true, 1);
-// addBookToLibrary(hobbit2);
-// const hobbit3 = new Book("The Fellowship of the Ring", "J.R.R. Tolkien", 297, false, 2);
-// addBookToLibrary(hobbit3);
 const container = document.querySelector('.container');
-//refreshLibrary();
+
 
 //adds form popup to add book button
 const formPopup = document.querySelector('.form-popup');
@@ -63,6 +56,7 @@ function toggleForm() {
 
 }
 
+//resets book form to default values
 function clearForm () {
     document.querySelector('#title').value = null;
     document.querySelector('#author').value = null;
@@ -91,7 +85,7 @@ function addFields() {
 }
 
 
-
+//renders library and saves to local storage
 function refreshLibrary() {
     while(container.firstChild) {
         container.removeChild(container.firstChild);
@@ -114,17 +108,20 @@ function refreshLibrary() {
 
 //populates book cards from book objects
 function populateCard(book, card) {
+    const infoContainer = document.createElement('div');
+    infoContainer.classList.add('card-info-container');
+
     const title = document.createElement('div');
     title.textContent = `${book.title}`
-    card.appendChild(title);
+    infoContainer.appendChild(title);
 
     const author = document.createElement('div');
     author.textContent = `${book.author}`
-    card.appendChild(author);
+    infoContainer.appendChild(author);
 
     const pages = document.createElement('div');
     pages.textContent = `${book.pages} pages`
-    card.appendChild(pages);
+    infoContainer.appendChild(pages);
 
     const readStatus = document.createElement('div');
     let rStatus = true
@@ -137,13 +134,16 @@ function populateCard(book, card) {
         rStatus = false;
     }
         
-    card.appendChild(readStatus);
+    infoContainer.appendChild(readStatus);
 
+    card.appendChild(infoContainer);
 
-    card.id = book.id;
+    const cardButtons = document.createElement('div');
+    cardButtons.classList.add('cardBtn-container');
 
     const readToggle = document.createElement('div');
     readToggle.classList.add('read-toggle');
+
     book.read ? readToggle.textContent = "Mark as unread" :
               readToggle.textContent = "Mark as read";  
     readToggle.addEventListener('click', () => {
@@ -161,26 +161,31 @@ function populateCard(book, card) {
 
         refreshLibrary();
     })
-    card.appendChild(readToggle);
+    cardButtons.appendChild(readToggle);
 
     const deleteBtn = document.createElement('div');
     deleteBtn.classList.add('deleteBtn')
+
+    const trashIcon = document.createElement('i');
+    trashIcon.classList.add('fa', 'fa-trash');
+    deleteBtn.appendChild(trashIcon);
+
     deleteBtn.addEventListener('click', () => {
-        delete myLibrary[card.id];
+        delete myLibrary[book.id];
         total--;
         refreshLibrary();
     })
-    card.appendChild(deleteBtn);
-
-    
+    cardButtons.appendChild(deleteBtn); 
+    card.appendChild(cardButtons);
 }
 
-
+//stores library in local storage
 function setData() {
     const localLibrary = JSON.stringify(myLibrary);
     localStorage.setItem("myLibrary", localLibrary);
 }
 
+//retrieves library from local storage
 function getData() {
     if (localStorage.myLibrary) {
         let text = localStorage.getItem("myLibrary");
