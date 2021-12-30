@@ -144,21 +144,24 @@ function populateCard(book, card) {
 
     const readToggle = document.createElement('div');
     readToggle.classList.add('read-toggle');
-    rStatus ? readToggle.textContent = "Mark as unread" :
+    book.read ? readToggle.textContent = "Mark as unread" :
               readToggle.textContent = "Mark as read";  
     readToggle.addEventListener('click', () => {
-        if (rStatus) {
+        if (book.read) {
             readToggle.textContent = "Mark as unread";
             readStatus.textContent = "Not Read";
+            book.read = false;
+        }
+
+        else {
+            readToggle.textContent = "Mark as read";
+            readStatus.textContent = "Read";
+            book.read = true;
         }
 
         refreshLibrary();
     })
     card.appendChild(readToggle);
-
-    function bookReadStatus(status) {
-
-    }
 
     const deleteBtn = document.createElement('div');
     deleteBtn.classList.add('deleteBtn')
